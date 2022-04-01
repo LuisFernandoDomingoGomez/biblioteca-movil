@@ -1,0 +1,80 @@
+.header-bar {
+    background-color: #1C1C1F;
+}
+
+.header-title {
+    color: white;
+    cursor: pointer;
+}
+
+.header-title:hover {
+    color: rgb(214, 213, 213);
+}
+
+.shoping-cart-items {
+  font-size: 0.7rem;
+}
+
+.hidenElement {
+  visibility: hidden;
+}
+
+/*---SIDEBAR INICIO----*/
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #1C1C1F;
+  overflow-x: hidden;
+  transition: 0.2s;
+  padding-top: 60px;
+}
+  
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  margin-left: 50px;
+}
+
+.closebtn {
+  /* font-size: 30px; */
+  color: white;
+  cursor: pointer;
+}
+
+/*---SIDEBAR FIN----*/
+
+/**MENU ITEMS*/
+@media only screen and (min-width: 992px) {
+  .hide-in-desktop {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .hide-in-mobile {
+    display: none;
+  }
+}
+
+/**MENU ITEMS FIN**/
+
+.card-border {
+  border: none;
+}
