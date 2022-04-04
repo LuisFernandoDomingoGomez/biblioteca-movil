@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import img from "../img/logo.png";
 
@@ -12,6 +12,39 @@ const Header = () => {
     const closeSideNav = () => sideNavRef.current.style.width = "0px";
 
     const goToMainPage = () => history.push('/');
+    const [isReadyForInstall, setIsReadyForInstall] = React.useState(false);
+
+    useEffect(() => {
+        window.addEventListener("beforeinstallprompt", (event) => {
+          // Prevent the mini-infobar from appearing on mobile.
+          event.preventDefault();
+          console.log("👍", "beforeinstallprompt", event);
+          // Stash the event so it can be triggered later.
+          window.deferredPrompt = event;
+          // Remove the 'hidden' class from the install button container.
+          setIsReadyForInstall(true);
+        });
+      }, []);
+    
+      async function downloadApp() {
+        console.log("👍", "butInstall-clicked");
+        const promptEvent = window.deferredPrompt;
+        if (!promptEvent) {
+          // The deferred prompt isn't available.
+          console.log("oops, no prompt event guardado en window");
+          return;
+        }
+        // Show the install prompt.
+        promptEvent.prompt();
+        // Log the result
+        const result = await promptEvent.userChoice;
+        console.log("👍", "userChoice", result);
+        // Reset the deferred prompt variable, since
+        // prompt() can only be called once.
+        window.deferredPrompt = null;
+        // Hide the install button.
+        setIsReadyForInstall(false);
+      }
 
     return (
         <Fragment>
@@ -33,7 +66,7 @@ const Header = () => {
                             <Link className="header-title mr-4" to={'/login'}>Iniciar Sesión</Link>
                             <Link className="header-title mr-4" to={'/about'}>Acerca</Link>
                             <Link className="header-title mr-4" to={'/list-books'}>Todos los libros</Link>
-                            <Link className="header-title" to={'/subscribe'}><button className="btn btn-secondary">Descargar</button></Link>
+                            <Link onClick={downloadApp}> Descarga </Link>
                         </div>
 
                         <hr></hr>
@@ -50,11 +83,10 @@ const Header = () => {
                 <Link className="header-title my-2" to={'/login'} onClick={closeSideNav}>Iniciar Sesión</Link>
                 <Link className="header-title my-2" to={'/about'} onClick={closeSideNav}>Acerca</Link>
                 <Link className="header-title my-2" to={'/list-books'} onClick={closeSideNav}>Todos los libros</Link>
-                <Link className="header-title my-2" to={'/subscribe'} onClick={closeSideNav}><button className="btn btn-secondary">Descargar</button></Link>
+                <Link onClick={downloadApp}> Descarga </Link>
             </div>
                 
         </Fragment>
-        
     );
 }
 

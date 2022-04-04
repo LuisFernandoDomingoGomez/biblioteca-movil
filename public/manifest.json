@@ -1,6 +1,9 @@
 {
-  "short_name": "Readct",
-  "name": "Readct",
+  "categories": ["lifestyle", "music"],
+  "description": "Esta es una PWA de prueba para mi gente en YouTube",
+  "dir": "ltr",
+  "display_override": ["standalone", "fullscreen"],
+  "display": "standalone",
   "icons": [
     {
       "src": "logo192.png",
@@ -15,9 +18,13 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
+  "lang": "es-MX",
+  "name": "Biblioteca de Alejandria ",
+  "orientation": "portrait",
+  "prefer_related_application": false,
   "scope": "/",
-  "display": "standalone",
+  "short_name": "PWA Lasfi",
+  "start_url": "/",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
