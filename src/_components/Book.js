@@ -25,18 +25,11 @@ export default class Book extends React.Component{
                 <div className="row justify-content-center">
                     {books.map((book, i) =>
                         <Card key={i}>
-                            <Card className="col card mb-3" style={{maxWidth: '155px'}}>
-                                <Card.Img src={book.image} width="5rem"/>
-                                {/* style={{ width: '5rem' }} Se podria agregar este style al Img pero lo cols ya esta definiendo su ancho*/}
-                                <Card.Body>
-                                    <Card.Title>{book.name}</Card.Title>
-                                        <Card.Text>
-                                            {book.author_id}
-                                        </Card.Text>
-                                        <div className="row justify-content-around">
-                                            <Button to={Pdf}>Leer</Button>
-                                        </div>
-                                </Card.Body>
+                            <Card className="col card mb-2" style={{width: '11rem'}}>
+                                <Card.Img src={book.image} width= "100%" height= "65%"/>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{book.name}</li>
+                                </ul>
                             </Card>
                         </Card>
                     )}

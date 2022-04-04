@@ -31,7 +31,7 @@ const Header = () => {
 
                         <div className="col-8 hide-in-mobile">
                             <Link className="header-title mr-4" to={'/login'}>Iniciar Sesión</Link>
-                            <Link className="header-title mr-4" to={'/offers'}>Acerca</Link>
+                            <Link className="header-title mr-4" to={'/about'}>Acerca</Link>
                             <Link className="header-title mr-4" to={'/list-books'}>Todos los libros</Link>
                             <Link className="header-title" to={'/subscribe'}><button className="btn btn-secondary">Descargar</button></Link>
                         </div>
@@ -48,7 +48,7 @@ const Header = () => {
                 <center><h5 onClick={goToMainPage} className="header-title"><img src={img} style={{height: '100px'}}/></h5></center>
                 <hr></hr>
                 <Link className="header-title my-2" to={'/login'} onClick={closeSideNav}>Iniciar Sesión</Link>
-                <Link className="header-title my-2" to={'/offers'} onClick={closeSideNav}>Acerca</Link>
+                <Link className="header-title my-2" to={'/about'} onClick={closeSideNav}>Acerca</Link>
                 <Link className="header-title my-2" to={'/list-books'} onClick={closeSideNav}>Todos los libros</Link>
                 <Link className="header-title my-2" to={'/subscribe'} onClick={closeSideNav}><button className="btn btn-secondary">Descargar</button></Link>
             </div>
