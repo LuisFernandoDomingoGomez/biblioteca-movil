@@ -22,16 +22,16 @@ export default class Book extends React.Component{
                 <br/>
                 <br/>
                 <div className="row justify-content-center">
-                    {books.map((book, i) =>
+                    {books.map((books, i) =>
                         <Card key={i}>
                             <Card className="col card mb-2" style={{width: '11rem'}}>
-                                <Card.Img src={book.image} width= "100%" height= "65%"/>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">{book.name}</li>
-                                </ul>
+                                <Card.Img src={books.image} width= "100%" height= "65%"/>
+                                <center><ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{books.name}</li>
+                                </ul></center>
                                 <div className="row justify-content-around">
                                     <Button>
-                                        <Link to={'/pdf-books'} style={{color: '#FFFFFF'}}>Leer</Link>
+                                        <Link to={{pathname: '/pdf-books', state: { id: books.id } }} style={{color: '#FFFFFF'}}>Leer</Link>
                                     </Button>
                                 </div>
                             </Card>
