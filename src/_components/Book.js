@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
-import Pdf from './Pdf';
 
 export default class Book extends React.Component{
     state = {
@@ -30,6 +29,11 @@ export default class Book extends React.Component{
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">{book.name}</li>
                                 </ul>
+                                <div className="row justify-content-around">
+                                    <Button>
+                                        <Link to={'/pdf-books'} style={{color: '#FFFFFF'}}>Leer</Link>
+                                    </Button>
+                                </div>
                             </Card>
                         </Card>
                     )}

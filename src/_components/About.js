@@ -56,7 +56,7 @@ const About = () => {
             <h5 className="my-3">Ubicación</h5>
             <div className="content container-fluid">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235.2912954739614!2d-99.47756979265979!3d19.340523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d20a14878a64eb%3A0x65bdb503fdce37bc!2sUniversidad%20Tecnol%C3%B3gica%20del%20Valle%20de%20Toluca!5e0!3m2!1ses-419!2smx!4v1649046187098!5m2!1ses-419!2smx" width="100%" height="500" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+            </div>
         </Fragment>
         
     );
