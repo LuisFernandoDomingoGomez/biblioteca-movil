@@ -30,9 +30,9 @@ export default class Book extends React.Component{
                                     <li class="list-group-item">{books.name}</li>
                                 </ul></center>
                                 <div className="row justify-content-around">
-                                    <Button>
-                                        <Link to={{pathname: '/pdf-books', state: { id: books.id } }} style={{color: '#FFFFFF'}}>Leer</Link>
-                                    </Button>
+                                    <Link to={{pathname: '/pdf-books', state: { id: books.id } }}>
+                                        <button type="button" className="btn btn-primary">Leer</button>
+                                    </Link>
                                 </div>
                             </Card>
                         </Card>
