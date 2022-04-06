@@ -1,87 +1,78 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { userLoginAction } from '../actions/auth-action';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-
-    const dispatch = useDispatch();
-
-    const login = user => dispatch(userLoginAction(user));
-
-    const history = useHistory();
-
-    const [userLogin, setUserLogin] = useState({
-        email: '',
-        password: ''
-    });
-
-    const [errorInputs, setErrorInputs] = useState([]);
-
-    const handleChange = e => {
-        const isValid = e.target.validity.valid;
-        const message = e.target.validationMessage;
-
-        validateInputs(isValid, message, e.target.name);
-
-        setUserLogin({
-            ...userLogin,
-            [e.target.name] : e.target.value
-        });
+export default class Login extends React.Component{
+    state={
+        email:'',
+        password:'',
+        user:[]
     }
 
-    const validateInputs = (isValid, message, inputName) => {
-        if (!isValid) {
-            setErrorInputs([
-                ...errorInputs,
-                {
-                    inputName,
-                    message
-                }
-            ]);
-        } else {
-            setErrorInputs(errorInputs.filter(errorInput => errorInput.inputName !== inputName));
-        }
-        
-    }
+    componentDidMount() {
+        fetch("http://127.0.0.1:8000/api/users")
+          .then((res) => res.json())
+          .then((usersJson) => this.setState({ users: usersJson }));
+      }
 
-    const showErrorsInForm = (inputName, ariaLabel) => {
-        const error = errorInputs.find(x => x.inputName === inputName);
-        return error? <small id={ariaLabel} className="form-text text-muted">{error.message}</small> : null;
-    }
+    dataField = (e) => { this.setState({ [e.target.name]: e.target.value }) }
 
-    const handleSubmit = e => {
+    subForm = (e) => {
         e.preventDefault();
-
-        login(userLogin);
-
-        history.push('/');
+        let data = {
+            email: this.state.email,
+            password: this.state.password,
+            };
+        fetch("http://127.0.0.1:8000/api/login",
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                mode: "cors",
+                body: JSON.stringify(data)
+            })
+            .then((response) => response.json())
+            .then(this.setState({ alta: "Inicio de sesión exitoso" }))
     }
 
-    return (
-        <div className="my-3">
+    render(){
+        const {alta, token}=this.state
+        //console.log('Inicia sesion', users) 
+        //Recuperar el token y borrarlo despues de 5 minutos
+        localStorage.setItem('token', token);
+        //Borrar el token despues de 5 minutos
+        setTimeout(() => {
+            localStorage.removeItem('token');
+            localStorage.clear();
+        }, 100000);
+        //console.log('Token', token)
+        //Redireccionar a la página principal
+        //window.location.href = '/' 
+
+        return(
+            <div className="my-3">
             <div className="row justify-content-center">
                 <div className="card col-11 col-sm-8 col-md-7">
                     <div className="card-body">
                         <div className="d-flex justify-content-center mt-3">
                             <h5 className="card-title">Iniciar Sesión</h5>
                         </div>
-
-                        <form>
+                        <br />
+                        {alta ? <div className="alert alert-success" role="alert">{alta}</div> : <div></div>}
+                        <form onSubmit={this.subForm}>
                             <div className="my-3">
                                 <label htmlFor="inputEmail">Email</label>
-                                <input name="email" value={userLogin.email} onChange={handleChange} type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp"  placeholder="Ingresa tu email" required/>
-                                {showErrorsInForm('email', 'emailHelp')}
+                                <input name="email" onChange={this.dataField} type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp"  placeholder="Ingresa tu email" required/>
                             </div>
 
                             <div className="my-3">
                                 <label htmlFor="InputPassword">Contraseña</label>
-                                <input name="password" value={userLogin.password} minLength={6} onChange={handleChange} type="password" className="form-control" id="InputPassword" aria-describedby="passwordHelp" placeholder="*******" required/>
-                                {showErrorsInForm('password', 'passwordHelp')}
+                                <input name="password" onChange={this.dataField} minLength={8} type="password" className="form-control" id="InputPassword" aria-describedby="passwordHelp" placeholder="*******" required/>
                             </div>
 
                             <div className="d-flex justify-content-center my-3">
-                                <button onClick={handleSubmit} className="btn btn-primary" type="submit">Iniciar Sesion</button>
+                                <button type="submit" className="btn btn-primary">Iniciar Sesion</button>
                             </div>
 
                             <div className="d-flex justify-content-center">
@@ -92,8 +83,7 @@ const Login = () => {
                     </div>
                 </div>
             </div> 
-        </div>
-    );
+            </div>
+        )
+    }
 }
- 
-export default Login;
