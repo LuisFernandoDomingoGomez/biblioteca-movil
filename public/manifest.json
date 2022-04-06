@@ -1,6 +1,6 @@
 {
-  "categories": ["lifestyle", "music"],
-  "description": "Esta es una PWA de prueba para mi gente en YouTube",
+  "categories": ["lifestyle", "books"],
+  "description": "Esta es una PWA para la Biblioteca de Alejandria",
   "dir": "ltr",
   "display_override": ["standalone", "fullscreen"],
   "display": "standalone",
@@ -19,11 +19,11 @@
     }
   ],
   "lang": "es-MX",
-  "name": "Biblioteca de Alejandria ",
+  "name": "Biblioteca de Alejandria",
   "orientation": "portrait",
   "prefer_related_application": false,
   "scope": "/",
-  "short_name": "PWA Lasfi",
+  "short_name": "BA",
   "start_url": "/",
   "theme_color": "#000000",
   "background_color": "#ffffff"
