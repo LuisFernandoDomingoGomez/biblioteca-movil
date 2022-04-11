@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Card, Button } from 'react-bootstrap';
 
 export default class Login extends React.Component{
     state={
@@ -59,7 +60,6 @@ export default class Login extends React.Component{
                             <h5 className="card-title">Iniciar Sesión</h5>
                         </div>
                         <br />
-                        {alta ? <div className="alert alert-success" role="alert">{alta}</div> : <div></div>}
                         <form onSubmit={this.subForm}>
                             <div className="my-3">
                                 <label htmlFor="inputEmail">Email</label>
@@ -72,7 +72,9 @@ export default class Login extends React.Component{
                             </div>
 
                             <div className="d-flex justify-content-center my-3">
-                                <button type="submit" className="btn btn-primary">Iniciar Sesion</button>
+                                <Link to="/">
+                                    <Button type="button" className="btn btn-primary">Iniciar Sesion</Button>
+                                </Link>
                             </div>
 
                             <div className="d-flex justify-content-center">

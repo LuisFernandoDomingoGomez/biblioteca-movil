@@ -16,7 +16,6 @@ export default class Register extends React.Component{
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-
         };
         fetch("http://127.0.0.1:8000/api/register",
             {
@@ -28,7 +27,7 @@ export default class Register extends React.Component{
                 mode: "cors",
                 body: JSON.stringify(data)
             })
-            .then((response) => response.json())
+            .then(response => response.json())
             .then(this.setState({ alta: "Usuario registrado con exito" }))
     }
 
@@ -61,7 +60,7 @@ export default class Register extends React.Component{
                                 </div>
                                 <br />
                                 <div className="d-flex justify-content-center my-3">
-                                    <button onSubmit={this.subForm} type="submit" className="btn btn-primary">Registrar</button>
+                                    <button type="submit" className="btn btn-primary">Registrar</button>
                                     {" "}
                                     <Link to="/login">
                                         <button type="button" className="btn btn-danger">Cancelar</button>
